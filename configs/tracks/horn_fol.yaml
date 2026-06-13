@@ -1,0 +1,30 @@
+# configs/tracks/horn_fol.yaml
+# Configuration for the base Horn-FOL logic track
+
+track: horn_fol
+description: "Classical first-order logic with Horn clauses"
+solver: z3
+
+operators:
+  train: [forall, exists, and, or, implies, not]
+  ood:   [count, geq, leq, eq, iff]
+
+generation:
+  num_rules_range:    [3, 6]
+  num_entities_range: [3, 5]
+  num_queries:        8
+  difficulty_range:   [1, 4]
+
+tasks:
+  - entailment       # 3-way: entails / contradicts / unknown
+  - satisfiability   # SAT / UNSAT
+  # - counterfactual  # coming soon
+  # - abduction       # coming soon
+
+splits:
+  train:                 {size: 10000, difficulty_max: 3}
+  dev:                   {size: 1000,  difficulty_max: 3}
+  test_iid:              {size: 1000,  difficulty_max: 3}
+  test_lexical_ood:      {size: 1000,  difficulty_max: 4}
+  test_operator_ood:     {size: 1000,  difficulty_max: 4}
+  test_compositional_ood:{size: 1000,  difficulty_max: 5}

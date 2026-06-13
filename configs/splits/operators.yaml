@@ -1,0 +1,41 @@
+# configs/splits/operators.yaml
+# Defines which operators appear in each train/test split
+
+train_operators:
+  - and
+  - or
+  - implies
+  - not
+  - forall
+  - exists
+
+test_operators_lexical_ood:
+  # Same operators as train — only entity/predicate names are new
+  - and
+  - or
+  - implies
+  - not
+  - forall
+  - exists
+
+test_operators_operator_ood:
+  # Held-out operators — never seen during training
+  - count       # counting quantifier
+  - geq         # at least N
+  - leq         # at most N
+  - eq          # exactly N
+  - iff         # if and only if
+
+test_operators_compositional_ood:
+  # Novel combinations: seen operators + one new counting operator
+  - forall
+  - exists
+  - and
+  - implies
+  - count       # combined with standard quantifiers (new combination)
+  - geq
+
+difficulty:
+  easy:   [1, 2]
+  medium: [3]
+  hard:   [4, 5]
